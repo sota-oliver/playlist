@@ -45,6 +45,7 @@ export default {
         }
     },
     methods:{
+        /* Mogućnost označavanja albuma kao “favorite” */
         async markFavorite(){
             let id = this.propsAlbum.id;
             this.favorite = await Albums.getOne(this.propsAlbum.id);

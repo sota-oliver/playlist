@@ -25,6 +25,7 @@ export default {
     };
   },
   async mounted() {
+        /* Prikaz svih informacija o albumu i izvođaču */
         let id = parseInt(localStorage.getItem("artistId"));
         this.albumCards = await Artists.fetchArtist(id)
         this.artistName = localStorage.getItem("artistName")

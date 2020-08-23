@@ -40,6 +40,7 @@ export default {
           limit:10
       };
   },
+  /* Mogućnost filtriranja albuma preko API-ja */
   watch: {
       'store.searchTerm': _.debounce(function(val) {
         this.fetchAlbums(val);
@@ -56,11 +57,13 @@ export default {
         term = term || store.searchTerm;
         this.albumCards = await Albums.searchAlbums(term);
       },
+  /* Klik na ime izvođača vodi na njegov single page */
       gotoDetails(albumCard) {
         this.$router.push({path: `artist/${albumCard.artistId}`});
         localStorage.setItem("artistId", albumCard.artistId);
         localStorage.setItem("artistName", albumCard.artist);
       },
+  /*  Ruta prihvaća opcionalni query parametar “limit” koji definira limit za request na api */
       async limitFive(){
         this.limit = 5;
         this.albumCards = await Albums.limitAlbums(this.limit);

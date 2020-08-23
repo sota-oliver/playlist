@@ -15,6 +15,7 @@ let Artists = {
                 artist: doc.title
         };
     },
+    /* Klik na ime izvođača vodi na njegov single page */
     async fetchArtist(id) {
         let options = {};
         let checkId = await Service.get(`/artists/${id}`);
@@ -41,6 +42,7 @@ let Artists = {
     }
 }
 let Albums = {
+    /* Prikaz svih informacija o albumu i izvođaču */
     async getOne(id){
         let response = await Service.get(`/albums/${id}`);
         let doc = response.data;
@@ -60,6 +62,7 @@ let Albums = {
         let data = response.data
         return data;
     },
+    /* Mogućnost filtriranja albuma preko API-ja */
     async searchAlbums(searchTerm) {
         let options = {};
         if (searchTerm) {
@@ -91,6 +94,7 @@ let Albums = {
         
         
     },
+    /*  Ruta prihvaća opcionalni query parametar “limit” koji definira limit za request na api */
     async limitAlbums(limit){
         let response = await Service.get('/albums');
         let data = response.data;
@@ -107,6 +111,7 @@ let Albums = {
         });
         return data;
     },
+    /* Mogućnost označavanja albuma kao “favorite” */
     async markFavorite(id, replacement){
         let response = await Service.patch(`/albums/${id}`, replacement);
         return response.data;
